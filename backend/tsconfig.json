@@ -14,6 +14,6 @@
     "noImplicitAny": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "express.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
