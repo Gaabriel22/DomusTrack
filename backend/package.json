@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "Gabriel Amaral",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.6.0",
     "bcryptjs": "^3.0.2",
