@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String               @id @default(uuid())
+  name          String
+  email         String               @unique
+  password_hash String
+  role          UserRole
+  created_at    DateTime             @default(now())
+  updated_at    DateTime             @updatedAt
+  properties    Property[]           @relation("UserPropertyAccess") // Define a relação de nome
+  maintenances  Maintenance[]        @relation("MaintenanceCreatedBy")
+  notifications Notification[]
+  user_access   UserPropertyAccess[] // Adicionando a relação oposta
+  Provider      Provider[]
+}
+
+model Property {
+  id           String               @id @default(uuid())
+  owner_id     String
+  name         String
+  address      String
+  status       PropertyStatus
+  created_at   DateTime             @default(now())
+  updated_at   DateTime             @updatedAt
+  owner        User                 @relation("UserPropertyAccess", fields: [owner_id], references: [id]) // Relação com o User
+  user_access  UserPropertyAccess[]
+  maintenances Maintenance[]
+}
+
+model UserPropertyAccess {
+  id           String      @id @default(uuid())
+  user_id      String
+  property_id  String
+  access_level AccessLevel
+  created_at   DateTime    @default(now())
+  user         User        @relation(fields: [user_id], references: [id]) // Relação com User
+  property     Property    @relation(fields: [property_id], references: [id]) // Relação com Property
+}
+
+model Maintenance {
+  id              String                @id @default(uuid())
+  property_id     String
+  title           String
+  description     String
+  type            MaintenanceType
+  scheduled_date  DateTime
+  status          MaintenanceStatus
+  cost            Float?
+  provider_id     String?
+  created_by      String
+  created_at      DateTime              @default(now())
+  updated_at      DateTime              @updatedAt
+  property        Property              @relation(fields: [property_id], references: [id])
+  provider        Provider?             @relation("MaintenanceProvider", fields: [provider_id], references: [id]) // Definindo o nome da relação com o Provider
+  created_by_user User                  @relation("MaintenanceCreatedBy", fields: [created_by], references: [id])
+  documents       MaintenanceDocument[]
+}
+
+model Provider {
+  id              String        @id @default(uuid())
+  name            String
+  phone           String
+  email           String
+  service_type    ServiceType
+  created_by      String
+  created_at      DateTime      @default(now())
+  created_by_user User          @relation(fields: [created_by], references: [id])
+  maintenances    Maintenance[] @relation("MaintenanceProvider") // Relação com Maintenance, nomeando a relação
+}
+
+model MaintenanceDocument {
+  id             String       @id @default(uuid())
+  maintenance_id String
+  url            String
+  type           DocumentType
+  uploaded_at    DateTime     @default(now())
+  maintenance    Maintenance  @relation(fields: [maintenance_id], references: [id]) // Relacionamento com Maintenance
+}
+
+model Notification {
+  id         String             @id @default(uuid())
+  user_id    String
+  title      String
+  message    String
+  status     NotificationStatus
+  created_at DateTime           @default(now())
+  user       User               @relation(fields: [user_id], references: [id])
+}
+
+enum UserRole {
+  owner
+  tenant
+  manager
+  business
+}
+
+enum PropertyStatus {
+  active
+  inactive
+  under_maintenance
+}
+
+enum AccessLevel {
+  view
+  edit
+  admin
+}
+
+enum MaintenanceType {
+  electrical
+  plumbing
+  painting
+  cleaning
+  other
+}
+
+enum MaintenanceStatus {
+  pending
+  in_progress
+  done
+  cancelled
+}
+
+enum ServiceType {
+  electrician
+  plumber
+  cleaning
+  general
+}
+
+enum DocumentType {
+  invoice
+  photo
+  other
+}
+
+enum NotificationStatus {
+  unread
+  read
+}
