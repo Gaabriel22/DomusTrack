@@ -68,7 +68,7 @@ model Provider {
   id              String        @id @default(uuid())
   name            String
   phone           String
-  email           String
+  email           String        @unique
   service_type    ServiceType
   created_by      String
   created_at      DateTime      @default(now())
