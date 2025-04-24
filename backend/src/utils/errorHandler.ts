@@ -1,5 +1,3 @@
-// backend/src/utils/errorHandler.ts
-
 export class ValidationError extends Error {
   statusCode: number
   constructor(message: string) {
