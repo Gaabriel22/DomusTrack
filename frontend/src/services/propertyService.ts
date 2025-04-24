@@ -96,3 +96,14 @@ export const listPropertiesByOwner = async (ownerId: string) => {
     throw new Error("Erro desconhecido ao listar propriedades do dono")
   }
 }
+
+const propertyService = {
+  createProperty,
+  updateProperty,
+  getPropertyById,
+  deleteProperty,
+  listProperties,
+  listPropertiesByOwner,
+}
+
+export default propertyService
