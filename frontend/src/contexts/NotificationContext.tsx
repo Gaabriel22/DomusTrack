@@ -15,7 +15,7 @@ interface NotificationContextType {
   deleteNotification: (id: string) => Promise<void>
 }
 
-const NotificationContext = createContext<NotificationContextType | undefined>(
+export const NotificationContext = createContext<NotificationContextType | undefined>(
   undefined
 )
 
