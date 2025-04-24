@@ -8,10 +8,10 @@ export const createMaintenance = async (req: Request, res: Response) => {
 
     const maintenance = await maintenanceService.createMaintenance(data)
 
-    return res.status(201).json(maintenance)
+    res.status(201).json(maintenance)
   } catch (error) {
     console.error(error)
-    return res.status(400).json({
+    res.status(400).json({
       error: error instanceof Error ? error.message : "Erro desconhecido",
     })
   }
@@ -26,10 +26,10 @@ export const getMaintenanceByProperty = async (req: Request, res: Response) => {
       propertyId
     )
 
-    return res.status(200).json(maintenances)
+    res.status(200).json(maintenances)
   } catch (error) {
     console.error(error)
-    return res.status(400).json({
+    res.status(400).json({
       error: error instanceof Error ? error.message : "Erro desconhecido",
     })
   }
@@ -42,10 +42,10 @@ export const addMaintenanceDocument = async (req: Request, res: Response) => {
 
     const document = await maintenanceService.addMaintenanceDocument(data)
 
-    return res.status(201).json(document)
+    res.status(201).json(document)
   } catch (error) {
     console.error(error)
-    return res.status(400).json({
+    res.status(400).json({
       error: error instanceof Error ? error.message : "Erro desconhecido",
     })
   }
