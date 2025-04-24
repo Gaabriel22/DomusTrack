@@ -63,12 +63,12 @@ export const login = async (data: LoginPayload): Promise<AuthResponse> => {
   const result = await response.json()
   localStorage.setItem("token", result.token)
 
-  const user = await verifyToken() 
+  const user = await verifyToken()
 
   return {
     message: result.message,
     token: result.token,
-    user, 
+    user,
   }
 }
 
