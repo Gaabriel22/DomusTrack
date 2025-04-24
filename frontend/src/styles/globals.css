@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  @apply bg-background text-foreground transition-colors duration-300;
+}
+
+/* Define cores temáticas com base em classes do Tailwind (via shadcn/ui) */
+:root {
+  --background: #f0f9f4;
+  --foreground: #3a3a3a;
+
+  --primary: #388e3c;
+  --primary-foreground: #ffffff;
+
+  --secondary: #81c784;
+  --secondary-foreground: #ffffff;
+
+  --accent: #ffeb3b;
+  --accent-foreground: #000000;
+}
+
+.dark {
+  --background: #212121;
+  --foreground: #e0e0e0;
+
+  --primary: #43a047;
+  --primary-foreground: #ffffff;
+
+  --secondary: #66bb6a;
+  --secondary-foreground: #ffffff;
+
+  --accent: #ffee58;
+  --accent-foreground: #000000;
+}
+
+/* Estilos adicionais globais */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Suporte para focus visível */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
