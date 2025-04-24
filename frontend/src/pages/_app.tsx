@@ -2,6 +2,9 @@ import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 import { ThemeProvider } from "../components/theme-provider"
 import Head from "next/head"
+import { AuthProvider } from "../contexts/AuthContext"
+import { NotificationProvider } from "../contexts/NotificationContext"
+import { PropertyProvider } from "../contexts/PropertyContext"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,10 +20,14 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {/* Aqui podemos envolver com contextos globais futuramente, exemplo: */}
-        {/* <AuthContextProvider> */}
-        <Component {...pageProps} />
-        {/* </AuthContextProvider> */}
+        {/* Providers globais */}
+        <AuthProvider>
+          <NotificationProvider>
+            <PropertyProvider>
+              <Component {...pageProps} />
+            </PropertyProvider>
+          </NotificationProvider>
+        </AuthProvider>
       </ThemeProvider>
     </>
   )
