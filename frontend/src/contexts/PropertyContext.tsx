@@ -18,7 +18,7 @@ interface PropertyContextType {
   listPropertiesByOwner: (ownerId: string) => Promise<void>
 }
 
-const PropertyContext = createContext<PropertyContextType | undefined>(
+export const PropertyContext = createContext<PropertyContextType | undefined>(
   undefined
 )
 
