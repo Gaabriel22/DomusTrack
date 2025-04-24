@@ -17,6 +17,7 @@ export interface LoginPayload {
 export interface AuthResponse {
   message: string
   token: string
+  user: User
 }
 
 export interface RegisterResponse {
@@ -61,7 +62,14 @@ export const login = async (data: LoginPayload): Promise<AuthResponse> => {
 
   const result = await response.json()
   localStorage.setItem("token", result.token)
-  return result
+
+  const user = await verifyToken() 
+
+  return {
+    message: result.message,
+    token: result.token,
+    user, 
+  }
 }
 
 // Verificação do token e retorno dos dados do usuário
