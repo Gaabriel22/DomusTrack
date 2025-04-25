@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useTheme } from "next-themes"
 
 interface User {
-    name: string,
-    role: string
+  name: string
+  role: string
 }
 
 const Navbar: React.FC = () => {
-  const [user, setUser] = useState<User| null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const router = useRouter()
+  const { theme } = useTheme()
 
   // Função para buscar o usuário autenticado
   const fetchUser = async () => {
@@ -51,8 +53,14 @@ const Navbar: React.FC = () => {
     router.push("/login") // Redireciona para a página de login
   }
 
+  // Cores ajustadas para o tema
+  const navbarBg = theme === "dark" ? "bg-gray-800" : "bg-primary"
+  const navbarText = theme === "dark" ? "text-white" : "text-white"
+  const hoverBg =
+    theme === "dark" ? "hover:bg-gray-700" : "hover:bg-primary-dark"
+
   return (
-    <nav className="bg-primary text-white shadow-md">
+    <nav className={`${navbarBg} ${navbarText} shadow-md`}>
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Link href="/" passHref>
@@ -60,23 +68,17 @@ const Navbar: React.FC = () => {
           </Link>
           <div className="flex space-x-4">
             <Link href="/" passHref>
-              <a className="hover:bg-primary-dark px-3 py-2 rounded-md">Home</a>
+              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Home</a>
             </Link>
             <Link href="/properties" passHref>
-              <a className="hover:bg-primary-dark px-3 py-2 rounded-md">
-                Propriedades
-              </a>
+              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Propriedades</a>
             </Link>
             <Link href="/maintenances" passHref>
-              <a className="hover:bg-primary-dark px-3 py-2 rounded-md">
-                Manutenções
-              </a>
+              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Manutenções</a>
             </Link>
             {isAuthenticated && user?.role === "admin" && (
               <Link href="/users" passHref>
-                <a className="hover:bg-primary-dark px-3 py-2 rounded-md">
-                  Usuários
-                </a>
+                <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Usuários</a>
               </Link>
             )}
           </div>
