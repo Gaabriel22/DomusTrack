@@ -30,15 +30,15 @@ const PropertyDetailPage = () => {
 
   if (!isAuthenticated) {
     return (
-      <p className="p-4">
+      <div className="p-4 text-center text-sm text-muted-foreground">
         Você precisa estar autenticado para ver esta página.
-      </p>
+      </div>
     )
   }
 
   if (loading) {
     return (
-      <div className="p-4 animate-pulse text-muted">
+      <div className="p-4 animate-pulse text-muted-foreground text-center">
         Carregando detalhes da propriedade...
       </div>
     )
@@ -46,22 +46,29 @@ const PropertyDetailPage = () => {
 
   if (!property) {
     return (
-      <div className="p-4 text-destructive">Propriedade não encontrada.</div>
+      <div className="p-4 text-center text-sm text-destructive">
+        Propriedade não encontrada.
+      </div>
     )
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-background shadow rounded-2xl">
-      <h1 className="text-2xl font-bold mb-4">{property.name}</h1>
-      <p>
-        <strong>Endereço:</strong> {property.address}
-      </p>
-      <p>
-        <strong>Status:</strong> {property.status}
-      </p>
-      <p>
-        <strong>ID do Dono:</strong> {property.owner_id}
-      </p>
+    <div className="max-w-3xl mx-auto p-6 bg-card text-card-foreground rounded-2xl shadow space-y-4">
+      <h1 className="text-2xl font-bold">Detalhes da Propriedade</h1>
+      <div className="space-y-2">
+        <p>
+          <span className="font-semibold">Nome:</span> {property.name}
+        </p>
+        <p>
+          <span className="font-semibold">Endereço:</span> {property.address}
+        </p>
+        <p>
+          <span className="font-semibold">Status:</span> {property.status}
+        </p>
+        <p>
+          <span className="font-semibold">ID do Dono:</span> {property.owner_id}
+        </p>
+      </div>
     </div>
   )
 }
