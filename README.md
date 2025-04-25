@@ -6,7 +6,7 @@
 
 O projeto **DomusTrack** é dividido em duas partes principais: o **backend** e o **frontend**. Cada uma dessas partes tem seu próprio conjunto de arquivos e README com instruções detalhadas para configuração e uso.
 
-- **[Frontend](front/README.md):** A interface do usuário foi construída utilizando **Next.js** e **Tailwind CSS**. Ele comunica com o backend para exibir as informações de propriedades, manutenções e notificações.
+- **[Frontend](frontend/README.md):** A interface do usuário foi construída utilizando **Next.js** e **Tailwind CSS**. Ele comunica com o backend para exibir as informações de propriedades, manutenções e notificações.
 - **[Backend](backend/README.md):** O backend foi desenvolvido utilizando **Node.js**, **Express**, **Prisma** (para acesso ao banco de dados) e **JWT** (para autenticação). Ele gerencia as operações de banco de dados e fornece uma API RESTful para o frontend.
 
 ## Funcionalidades
