@@ -43,13 +43,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ variant, size, disabled = false, className, ...props }, ref) => {
     const { theme } = useTheme()
 
+    // Responsividade: Ajuste de padding baseado no tamanho do dispositivo
+    const responsiveClasses = "sm:px-3 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-3"
+
     return (
       <input
         className={`${inputVariants({
           variant,
           size,
           disabled,
-        })} ${theme === "dark" ? "text-white" : "text-gray-900"} ${className}`}
+        })} ${
+          theme === "dark" ? "text-white bg-gray-800" : "text-gray-900 bg-white"
+        } ${responsiveClasses} ${className}`}
         ref={ref}
         disabled={disabled}
         {...props}
