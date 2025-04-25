@@ -1,5 +1,6 @@
 import React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import Link from "next/link"
 import { useTheme } from "next-themes"
 
 const buttonVariants = cva(
@@ -32,20 +33,27 @@ const buttonVariants = cva(
 
 interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  href?: string
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, fullWidth, className, children, ...props }, ref) => {
+  ({ variant, size, fullWidth, className, children, href, ...props }, ref) => {
     const { theme } = useTheme()
+    const baseClasses = `${buttonVariants({ variant, size, fullWidth })} ${
+      theme === "dark" ? "text-white" : "text-gray-900"
+    } ${className}`
+
+    if (href) {
+      return (
+        <Link href={href} className={baseClasses}>
+          {children}
+        </Link>
+      )
+    }
 
     return (
-      <button
-        className={`${buttonVariants({ variant, size, fullWidth })} ${
-          theme === "dark" ? "text-white" : "text-gray-900"
-        } ${className}`}
-        ref={ref}
-        {...props}
-      >
+      <button className={baseClasses} ref={ref} {...props}>
         {children}
       </button>
     )
