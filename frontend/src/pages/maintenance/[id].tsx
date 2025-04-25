@@ -37,18 +37,28 @@ const MaintenanceDetailPage = () => {
   }, [id, isAuthenticated, router, verifyToken])
 
   if (loading) {
-    return <p className="text-center mt-8">Carregando manutenção...</p>
+    return (
+      <p className="text-center mt-8 text-muted-foreground">
+        Carregando manutenção...
+      </p>
+    )
   }
 
   if (!maintenance) {
-    return <p className="text-center mt-8">Manutenção não encontrada.</p>
+    return (
+      <p className="text-center mt-8 text-destructive">
+        Manutenção não encontrada.
+      </p>
+    )
   }
 
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Detalhes da Manutenção</h1>
+      <h1 className="text-2xl font-bold text-primary mb-6">
+        Detalhes da Manutenção
+      </h1>
 
-      <div className="space-y-4 bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+      <div className="space-y-4 bg-card text-card-foreground p-6 rounded-2xl shadow">
         <p>
           <span className="font-semibold">Título:</span> {maintenance.title}
         </p>
