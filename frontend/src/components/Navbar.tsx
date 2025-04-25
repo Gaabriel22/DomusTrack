@@ -63,22 +63,28 @@ const Navbar: React.FC = () => {
     <nav className={`${navbarBg} ${navbarText} shadow-md`}>
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Link href="/" passHref>
-            <a className="text-2xl font-bold">DomusTrack</a>
+          <Link href="/" className="text-2xl font-bold">
+            DomusTrack
           </Link>
           <div className="flex space-x-4">
-            <Link href="/" passHref>
-              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Home</a>
+            <Link href="/" className={`px-3 py-2 rounded-md ${hoverBg}`}>
+              Home
             </Link>
-            <Link href="/properties" passHref>
-              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Propriedades</a>
+            <Link
+              href="/properties"
+              className={`px-3 py-2 rounded-md ${hoverBg}`}
+            >
+              Propriedades
             </Link>
-            <Link href="/maintenances" passHref>
-              <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Manutenções</a>
+            <Link
+              href="/maintenances"
+              className={`px-3 py-2 rounded-md ${hoverBg}`}
+            >
+              Manutenções
             </Link>
             {isAuthenticated && user?.role === "admin" && (
-              <Link href="/users" passHref>
-                <a className={`px-3 py-2 rounded-md ${hoverBg}`}>Usuários</a>
+              <Link href="/users" className={`px-3 py-2 rounded-md ${hoverBg}`}>
+                Usuários
               </Link>
             )}
           </div>
@@ -96,15 +102,17 @@ const Navbar: React.FC = () => {
             </div>
           ) : (
             <div className="flex items-center space-x-4">
-              <Link href="/login" passHref>
-                <a className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
-                  Login
-                </a>
+              <Link
+                href="/login"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+              >
+                Login
               </Link>
-              <Link href="/register" passHref>
-                <a className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md">
-                  Registrar
-                </a>
+              <Link
+                href="/register"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md"
+              >
+                Registrar
               </Link>
             </div>
           )}
