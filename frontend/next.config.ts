@@ -1,6 +1,5 @@
 const config = {
   reactStrictMode: true, // Habilita o modo estrito
-  swcMinify: true, // Ativa minificação com SWC
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_TWILIO_API_KEY: process.env.NEXT_PUBLIC_TWILIO_API_KEY,
