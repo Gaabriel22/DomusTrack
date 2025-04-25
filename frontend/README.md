@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DomusTrack - Frontend
 
-## Getting Started
+Este é o frontend do projeto **DomusTrack**, uma aplicação web para gerenciamento de propriedades e manutenções.
 
-First, run the development server:
+## 🔧 Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://reactjs.org/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Next Auth](https://next-auth.js.org/)
+- [Shadcn/UI](https://ui.shadcn.dev/)
+- [Lucide Icons](https://lucide.dev/)
+- [Axios](https://axios-http.com/)
+- TypeScript
+
+## 📁 Estrutura de Pastas
+
+```
+DomusTrack/front/
+├── public/                    # Imagens e arquivos estáticos
+├── src/
+│   ├── components/            # Componentes reutilizáveis (UI e lógica)
+│   ├── contexts/              # Contextos de estado global (ex: autenticação)
+│   ├── hooks/                 # Hooks personalizados
+│   ├── lib/                   # Integração com API
+│   ├── pages/                 # Rotas do Next.js
+│   ├── services/              # Serviços de integração com o backend
+│   ├── styles/                # Estilos com Tailwind CSS
+│   ├── utils/                 # Funções utilitárias (formatadores, helpers)
+│   └── types/                 # Tipagens do TypeScript
+├── .env.local                 # Variáveis de ambiente
+├── next.config.js             # Configurações do Next.js
+├── package.json               # Dependências e scripts
+├── tailwind.config.js         # Configuração do Tailwind
+└── tsconfig.json              # Configuração do TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ▶️ Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Cria uma build de produção
+- `npm run start`: Inicia a aplicação em produção
+- `npm run lint`: Executa a verificação de lint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Funcionalidades
 
-## Learn More
+- Autenticação com NextAuth
+- Alternância de tema (claro/escuro)
+- Cadastro e visualização de propriedades
+- Controle de manutenções
+- Notificações (com badge dinâmico)
+- Integração com backend via serviços Axios
+- UI responsiva com Tailwind e animações
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Como Rodar Localmente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone o repositório**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone https://github.com/Gaabriel22/DomusTrack.git
+cd domustrack/frontend
+```
 
-## Deploy on Vercel
+2. Instale as dependências:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Configure as variáveis de ambiente:
+
+   ```bash
+   cp .env.local.example .env.local
+   # Edite o arquivo com suas chaves e URLs
+   ```
+
+4. Inicie a aplicação:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Acesse em: [http://localhost:3000](http://localhost:3000)
+
+---
+
+Feito com 💻 por Gabriel Amaral.
