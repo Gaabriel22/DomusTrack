@@ -95,6 +95,25 @@ export const verifyToken = async (): Promise<User> => {
   return result.user
 }
 
+// Atualiza os dados do usuário
+export const updateUser = async (user: User): Promise<User> => {
+  const response = await fetch(`${API_URL}/users/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(user),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || "Erro ao atualizar os dados do usuário.")
+  }
+
+  return response.json()
+}
+
 // Logout (remove token)
 export const logout = () => {
   localStorage.removeItem("token")
