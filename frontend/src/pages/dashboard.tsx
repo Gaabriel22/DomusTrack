@@ -43,13 +43,17 @@ const DashboardPage = () => {
 
   return (
     <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="rounded-2xl shadow bg-background p-4">
-        <h2 className="text-lg font-semibold">Propriedades</h2>
-        <p>{properties?.length ?? 0} cadastradas</p>
+      <div className="rounded-2xl shadow bg-card p-4">
+        <h2 className="text-lg font-semibold text-primary">Propriedades</h2>
+        <p className="text-primary-foreground">
+          {properties?.length ?? 0} cadastradas
+        </p>
       </div>
-      <div className="rounded-2xl shadow bg-background p-4">
-        <h2 className="text-lg font-semibold">Manutenções</h2>
-        <p>{maintenances?.length ?? 0} registradas</p>
+      <div className="rounded-2xl shadow bg-card p-4">
+        <h2 className="text-lg font-semibold text-primary">Manutenções</h2>
+        <p className="text-primary-foreground">
+          {maintenances?.length ?? 0} registradas
+        </p>
       </div>
     </div>
   )
