@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { useAuth } from "../hooks/useAuth"
 import { User } from "../types/user"
 import { updateUser } from "../services/authService"
+import Input from "../components/Input"
+import Button from "../components/Button" 
 
 const ProfilePage = () => {
   const { user, isAuthenticated } = useAuth()
@@ -51,66 +53,75 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Editar Perfil</h1>
+    <div className="max-w-2xl mx-auto p-4 bg-background">
+      <h1 className="text-2xl font-bold mb-6 text-primary">Editar Perfil</h1>
 
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow"
+        className="space-y-4 bg-card dark:bg-dark p-6 rounded-lg shadow"
       >
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold">
+          <label
+            htmlFor="name"
+            className="block text-sm font-semibold text-primary"
+          >
             Nome
           </label>
-          <input
-            type="text"
+          <Input
             id="name"
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold">
+          <label
+            htmlFor="email"
+            className="block text-sm font-semibold text-primary"
+          >
             E-mail
           </label>
-          <input
-            type="email"
+          <Input
             id="email"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-semibold">
+          <label
+            htmlFor="password"
+            className="block text-sm font-semibold text-primary"
+          >
             Senha
           </label>
-          <input
-            type="password"
+          <Input
             id="password"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1"
             placeholder="Deixe em branco para não alterar"
           />
         </div>
 
-        <button
+        <Button
           type="submit"
           disabled={loading}
-          className={`w-full p-2 bg-blue-600 text-white rounded-md ${
+          className={`w-full p-2 bg-primary text-white rounded-md ${
             loading ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
           {loading ? "Atualizando..." : "Salvar alterações"}
-        </button>
+        </Button>
       </form>
     </div>
   )
