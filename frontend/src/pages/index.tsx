@@ -4,6 +4,7 @@ import maintenanceService from "../services/maintenanceService"
 import propertyService from "../services/propertyService"
 import { Maintenance } from "../types/maintenance"
 import { Property } from "../types/property"
+import Button from "../components/Button" // Importando seu componente Button
 
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth()
@@ -28,7 +29,7 @@ const Dashboard = () => {
             maintenanceService.getMaintenanceByProperty(property.id)
           )
         )
-        setMaintenances(maintenancesData.flat()) 
+        setMaintenances(maintenancesData.flat())
       } catch (error) {
         console.error("Erro ao carregar dados:", error)
       } finally {
@@ -43,16 +44,33 @@ const Dashboard = () => {
     }
   }, [isAuthenticated, user])
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background dark:bg-background text-foreground dark:text-foreground transition-all">
+        <h1 className="text-4xl font-bold text-primary">
+          Bem-vindo ao DomusTrack
+        </h1>
+        <p className="mt-4 text-lg text-secondary">
+          Gestão de manutenção com cuidado e organização.
+        </p>
+        <div className="mt-6 flex space-x-4">
+          <Button href="/register" variant="primary" size="medium">
+            Registro
+          </Button>
+          <Button href="/login" variant="secondary" size="medium">
+            Login
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="p-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <h1 className="text-2xl font-semibold text-primary">Dashboard</h1>
 
       {loading ? (
         <p>Carregando...</p>
-      ) : !isAuthenticated ? (
-        <p className="text-red-500">
-          Por favor, faça login para acessar o dashboard.
-        </p>
       ) : (
         <>
           <section className="mt-6">
