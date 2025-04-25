@@ -4,7 +4,7 @@ import maintenanceService from "../services/maintenanceService"
 import propertyService from "../services/propertyService"
 import { Maintenance } from "../types/maintenance"
 import { Property } from "../types/property"
-import Button from "../components/Button" // Importando seu componente Button
+import Button from "../components/Button" 
 
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth()
@@ -46,11 +46,11 @@ const Dashboard = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-background dark:bg-background text-foreground dark:text-foreground transition-all">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground transition-all">
         <h1 className="text-4xl font-bold text-primary">
           Bem-vindo ao DomusTrack
         </h1>
-        <p className="mt-4 text-lg text-secondary">
+        <p className="mt-4 text-lg text-muted-foreground">
           Gestão de manutenção com cuidado e organização.
         </p>
         <div className="mt-6 flex space-x-4">
@@ -66,55 +66,53 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div className="p-6 max-w-4xl mx-auto space-y-10">
       <h1 className="text-2xl font-semibold text-primary">Dashboard</h1>
 
       {loading ? (
-        <p>Carregando...</p>
+        <p className="text-muted">Carregando...</p>
       ) : (
         <>
-          <section className="mt-6">
-            <h2 className="text-xl font-semibold text-primary">Propriedades</h2>
+          <section>
+            <h2 className="text-xl font-semibold mb-4 text-secondary">
+              Propriedades
+            </h2>
             {properties.length === 0 ? (
-              <p className="text-gray-500">
+              <p className="text-muted-foreground">
                 Você não tem propriedades registradas.
               </p>
             ) : (
-              <ul>
+              <div className="space-y-4">
                 {properties.map((property) => (
-                  <li
+                  <div
                     key={property.id}
-                    className="py-4 border-b border-gray-200 dark:border-gray-700"
+                    className="rounded-xl border p-4 bg-card text-card-foreground"
                   >
-                    <h3 className="text-lg font-medium text-secondary">
-                      {property.name}
-                    </h3>
+                    <h3 className="text-lg font-medium">{property.name}</h3>
                     <p>Status: {property.status}</p>
                     <p>Endereço: {property.address}</p>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             )}
           </section>
 
-          <section className="mt-6">
-            <h2 className="text-xl font-semibold text-primary">
+          <section>
+            <h2 className="text-xl font-semibold mb-4 text-secondary">
               Manutenções Recentes
             </h2>
             {maintenances.length === 0 ? (
-              <p className="text-gray-500">
+              <p className="text-muted-foreground">
                 Você não tem manutenções registradas.
               </p>
             ) : (
-              <ul>
+              <div className="space-y-4">
                 {maintenances.map((maintenance) => (
-                  <li
+                  <div
                     key={maintenance.id}
-                    className="py-4 border-b border-gray-200 dark:border-gray-700"
+                    className="rounded-xl border p-4 bg-card text-card-foreground"
                   >
-                    <h3 className="text-lg font-medium text-secondary">
-                      {maintenance.title}
-                    </h3>
+                    <h3 className="text-lg font-medium">{maintenance.title}</h3>
                     <p>Status: {maintenance.status}</p>
                     <p>Tipo: {maintenance.type}</p>
                     <p>
@@ -123,9 +121,9 @@ const Dashboard = () => {
                         maintenance.scheduled_date
                       ).toLocaleDateString()}
                     </p>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             )}
           </section>
         </>
